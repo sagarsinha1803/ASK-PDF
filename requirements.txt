@@ -1,0 +1,7 @@
+langchain
+langchain-ollama
+python-dotenv
+langchain-community
+streamlit
+pymupdf
+tiktoken
