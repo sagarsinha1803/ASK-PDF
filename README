@@ -1,0 +1,15 @@
+Ask PDF - Chat with Your PDF Documents
+Overview
+Ask PDF is an interactive application that allows users to upload PDF documents and chat with them using natural language. Built with Streamlit and powered by LLM (Large Language Model), it provides an intuitive interface for document interaction.
+
+Features
+📄 PDF file upload and management
+💬 Natural language conversation with PDF content
+🔍 Intelligent document parsing and understanding
+🗑️ Easy file management with delete functionality
+👤 User session management
+🔄 Real-time conversation history
+Installation
+Prerequisites
+Python 3.8 or higher
+pip package manager
