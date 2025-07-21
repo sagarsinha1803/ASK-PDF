@@ -40,3 +40,38 @@ Your job is to interact with network devices by:
 **Function Signature**:
 ```python
 execute_query_on_server(device_ip: str, region: str, command: str, port: int = 22) -> str
+
+
+from typing import Optional, Tuple, Dict, List
+from pydantic import BaseModel, Field
+
+
+class ClIAssistantState(BaseModel):
+    device_ip: Optional[str] = Field(
+        default=None,
+        description="IP address of the target network device. Must be explicitly provided by the user before command execution."
+    )
+    region: Optional[str] = Field(
+        default=None,
+        description="Region or location of the network device. Required before running any CLI command."
+    )
+    device_type: Optional[str] = Field(
+        default=None,
+        description="Vendor or platform type of the device (e.g., 'cisco', 'juniper', 'arista'). Used to tailor CLI syntax."
+    )
+    port: int = Field(
+        default=22,
+        description="SSH port used to connect to the device. Defaults to 22 unless otherwise specified."
+    )
+    command_cache: Dict[Tuple[str, str, str], str] = Field(
+        default_factory=dict,
+        description="Cache storing results of previous (device_ip, region, command) queries to prevent re-execution."
+    )
+    session_active: bool = Field(
+        default=False,
+        description="Indicates whether a session with a device is currently active. Set to False on logout."
+    )
+    messages: List[str] = Field(
+        default_factory=list,
+        description="List of general-purpose messages or logs to track agent interaction steps or notes."
+    )
